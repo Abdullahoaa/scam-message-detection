@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scam Message Detection</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="page-container">
+    <header class="hero-card">
+      <div class="hero-copy">
+        <p class="eyebrow">Cybersecurity AI</p>
+        <h1>Scam Message Detection</h1>
+        <p class="hero-description">
+          Paste a suspicious text message or email below to scan it for common scam tactics and get a clear risk assessment. This app processes text locally and does not log or store your input.
+        </p>
+      </div>
+      <div class="hero-summary">
+        <div class="stat-card">
+          <h2>Risk Engine</h2>
+          <p>Cybersecurity indicator scoring trained on real scam conversation data</p>
+        </div>
+        <div class="stat-card">
+          <h2>Response Model</h2>
+          <p>Logistic Regression + Random Forest ensemble (optional, if you already replied)</p>
+        </div>
+        <div class="stat-card">
+          <h2>Privacy</h2>
+          <p>Local inference only, no message storage</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="analysis-panel">
+      <section class="input-section">
+        <div class="input-card">
+          <h2>Message to Analyze</h2>
+          <p class="field-hint">Paste the suspicious text message, email, or chat message you received.</p>
+          <textarea id="message" rows="7" placeholder="Paste the suspicious message text here..."></textarea>
+        </div>
+
+        <div class="input-card">
+          <h2>Your Response <span class="optional-tag">Optional</span></h2>
+          <p class="field-hint">If you already replied to this message, paste your response to also check how effectively it resisted the scam.</p>
+          <textarea id="user_response" rows="4" placeholder="e.g. \"No, I will not send any payment information.\""></textarea>
+        </div>
+
+        <div class="action-panel">
+          <button id="analyzeBtn" class="primary-btn">Analyze Message</button>
+          <div class="privacy-note">
+            <strong>Privacy Notice:</strong> Messages are processed locally in memory. Do not submit passwords, OTPs, card numbers, or highly sensitive personal data.
+          </div>
+        </div>
+      </section>
+
+      <section class="output-section" id="output-section" hidden>
+        <div class="result-header">
+          <h2>Analysis Result</h2>
+          <p class="subtext">Risk assessment based on cybersecurity indicator detection trained from real scam conversation data.</p>
+        </div>
+
+        <div class="risk-banner" id="riskBanner">
+          <div class="risk-banner-label">
+            <span id="riskLabel" class="risk-label"></span>
+            <span class="risk-sub">Scam Risk Level</span>
+          </div>
+          <div class="risk-meter">
+            <div class="risk-meter-track">
+              <div id="riskMeterFill" class="risk-meter-fill"></div>
+            </div>
+            <span id="riskConfidence" class="risk-confidence"></span>
+          </div>
+          <div class="risk-count">
+            <span id="riskIndicatorCount"></span> cybersecurity indicator(s) detected
+          </div>
+        </div>
+
+        <div class="result-grid indicators-grid" id="indicatorGrid"></div>
+
+        <div class="result-card response-card" id="responseCard" hidden>
+          <h3>Your Response Effectiveness</h3>
+          <div id="responseResult" class="result-badge"></div>
+          <p class="confidence-text">Confidence: <span id="responseConfidence"></span></p>
+          <div class="score-list">
+            <div><strong>Logistic Regression:</strong> <span id="lrScore"></span></div>
+            <div><strong>Random Forest:</strong> <span id="rfScore"></span></div>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <h3>Input Summary</h3>
+          <p><strong>Message:</strong></p>
+          <div id="summaryMessage" class="message-box"></div>
+          <div id="summaryResponseWrap" hidden>
+            <p><strong>Your Response:</strong></p>
+            <div id="summaryResponse" class="message-box"></div>
+          </div>
+          <div class="stats-row" id="summaryStats"></div>
+        </div>
+
+        <div class="recommendation-card">
+          <h3>Security Recommendations</h3>
+          <ul id="recommendations"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
